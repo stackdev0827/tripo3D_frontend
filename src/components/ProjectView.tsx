@@ -64,7 +64,7 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
       const formData = new FormData();
       formData.append('file', file);
   
-      const response = await axios.post('http://localhost:3000/api/files', formData, {
+      const response = await axios.post('https://tripo3d_backend.railway.internal/api/files', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
