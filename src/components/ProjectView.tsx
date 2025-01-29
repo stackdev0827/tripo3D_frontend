@@ -8,7 +8,7 @@ import { OrbitControls, useGLTF } from '@react-three/drei';
 // Add this new component for the 3D model
 function Model({ url }: { url: string }) {
   const { scene } = useGLTF(url);
-  return <primitive object={scene} scale={1} position={[0, 0, 0]} />;
+  return <primitive object={scene} scale={3} position={[0, 0, 0]} />;
 }
 
 const apiKey = "tcli_7de49c7d33dc4e1fb9aff135c3855fa4";
