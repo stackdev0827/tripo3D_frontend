@@ -188,11 +188,11 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
                 {/* Render the model */}
                 <Model url={modelUrl} />
                 {/* Controls for interaction */}
-                <OrbitControls
+                {/* <OrbitControls
                   enableZoom={true}
                   enablePan={true}
                   enableRotate={true}
-                />
+                /> */}
               </Canvas>
             ) : (
               <div className="w-full h-full flex items-center justify-center">
