@@ -159,110 +159,6 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
             />
           </div>
         </div>
-
-        {/* 3D Model Viewer */}
-        {/* <div className="lg:col-span-2 space-y-4">
-          <div className="flex justify-between items-center">
-            <h3 className="font-medium text-gray-900">3D Model</h3>
-            {(project.status === 'completed' || modelGenerated) && (
-              <div className="relative">
-                <button
-                  onClick={() => setShowExportDropdown(!showExportDropdown)}
-                  className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
-                >
-                  <Download className="w-4 h-4 mr-1.5" />
-                  Export Model
-                  <ChevronDown className="w-4 h-4 ml-1.5" />
-                </button>
-                {showExportDropdown && (
-                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg z-10 border border-gray-200">
-                    <div className="py-1">
-                      {exportFormats.map((format) => (
-                        <button
-                          key={format.name}
-                          onClick={() => handleExport(format)}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center justify-between"
-                        >
-                          <div>
-                            <span className="font-medium text-gray-900">{format.name}</span>
-                            <p className="text-sm text-gray-500">{format.description}</p>
-                          </div>
-                          <span className="text-sm text-gray-500">{format.size}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-          {project.status === 'processing' && !modelGenerated ? (
-            <div className="space-y-4">
-              <div className="h-[400px] bg-gray-100 rounded-lg flex flex-col items-center justify-center">
-                <Cube className="w-16 h-16 text-indigo-600 animate-pulse mb-4" />
-                <div className="text-gray-600 font-medium">Generating 3D Model...</div>
-                <div className="text-sm text-gray-500 mt-1">This may take a few minutes</div>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2.5">
-                <div
-                  className="bg-indigo-600 h-2.5 rounded-full transition-all duration-300"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-              <div className="text-sm text-gray-600 text-center">
-                {progress}% Complete
-              </div>
-            </div>
-          ) : (
-            <div className="relative">
-              <div className="h-[400px] bg-gray-100 rounded-lg flex items-center justify-center">
-                <div
-                  className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg relative overflow-hidden"
-                  style={{
-                    perspective: '1000px',
-                    transformStyle: 'preserve-3d',
-                  }}
-                >
-                  <div
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{
-                      animation: 'rotate 20s linear infinite',
-                    }}
-                  >
-                    <div
-                      className="w-48 h-48 bg-indigo-500/30 rounded-lg"
-                      style={{
-                        transform: 'rotateX(45deg) rotateY(45deg)',
-                        boxShadow: '0 0 40px rgba(99, 102, 241, 0.3)',
-                      }}
-                    />
-                  </div>
-                  <style>
-                    {`
-                      @keyframes rotate {
-                        from { transform: rotateY(0deg); }
-                        to { transform: rotateY(360deg); }
-                      }
-                    `}
-                  </style>
-                </div>
-              </div>
-              
-
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-full shadow-lg px-4 py-2 flex space-x-4">
-                <button className="p-2 hover:bg-gray-100 rounded-full" title="Rotate">
-                  <RotateCw className="w-5 h-5 text-gray-600" />
-                </button>
-                <button className="p-2 hover:bg-gray-100 rounded-full" title="Zoom">
-                  <ZoomIn className="w-5 h-5 text-gray-600" />
-                </button>
-                <button className="p-2 hover:bg-gray-100 rounded-full" title="View Mode">
-                  <Eye className="w-5 h-5 text-gray-600" />
-                </button>
-              </div>
-            </div>
-          )}
-        </div> */}
         <div className="lg:col-span-2 space-y-4">
           <div className="flex justify-between items-center">
             <h3 className="font-medium text-gray-900">3D Model</h3>
@@ -281,14 +177,31 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
           
           <div className="h-[400px] bg-gray-100 rounded-lg overflow-hidden">
             {modelUrl ? (
+              // <Canvas
+              //   camera={{ position: [0, 0, 5], fov: 50 }}
+              //   style={{ width: '100%', height: '100%' }}
+              // >
+              //   <ambientLight intensity={0.5} />
+              //   <pointLight position={[10, 10, 10]} intensity={1} />
+              //   <Model url={modelUrl} />
+              //   <OrbitControls 
+              //     enableZoom={true}
+              //     enablePan={true}
+              //     enableRotate={true}
+              //   />
+              // </Canvas>
               <Canvas
-                camera={{ position: [0, 0, 5], fov: 50 }}
+                camera={{ position: [2, 2, 5], fov: 50 }} // Adjusted camera position for a better view
                 style={{ width: '100%', height: '100%' }}
               >
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={1} />
+                {/* Add balanced lighting */}
+                <ambientLight intensity={0.8} /> {/* General light to brighten the scene */}
+                <directionalLight position={[5, 5, 5]} intensity={1} /> {/* A directional light to create shadows */}
+                <pointLight position={[-5, -5, -5]} intensity={0.5} /> {/* Additional light for softer illumination */}
+                {/* Render the model */}
                 <Model url={modelUrl} />
-                <OrbitControls 
+                {/* Controls for interaction */}
+                <OrbitControls
                   enableZoom={true}
                   enablePan={true}
                   enableRotate={true}
