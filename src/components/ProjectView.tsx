@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Cuboid as Cube, Download, Eye, Image as ImageIcon, RotateCw, ZoomIn, ChevronDown, Upload } from 'lucide-react';
+import { ArrowLeft, Download, Eye, RotateCw, ZoomIn, Upload } from 'lucide-react';
 import type { Project } from '../types';
 import axios from "axios";
 import { Canvas } from '@react-three/fiber';
@@ -11,10 +11,6 @@ function Model({ url }: { url: string }) {
   return <primitive object={scene} scale={3} position={[0, 0, 0]} />;
 }
 
-const apiKey = "tcli_7de49c7d33dc4e1fb9aff135c3855fa4";
-const corsProxy = 'https://cors-anywhere.herokuapp.com/';
-const url = `${corsProxy}https://api.tripo3d.ai/v2/openapi/upload`;
-
 interface ProjectViewProps {
   project: Project;
   onBack: () => void;
@@ -23,17 +19,10 @@ interface ProjectViewProps {
 export function ProjectView({ project, onBack }: ProjectViewProps) {
   const [progress, setProgress] = useState(0);
   const [activeImage, setActiveImage] = useState(0);
-  const [showExportDropdown, setShowExportDropdown] = useState(false);
   const [modelGenerated, setModelGenerated] = useState(false);
   const [images, setImages] = useState<string[]>(project.thumbnailUrl ? [project.thumbnailUrl] : []);
   const [uploading, setUploading] = useState(false);
   const [modelUrl, setModelUrl] = useState<string | null>(null);
-
-  const exportFormats = [
-    { name: 'GLB', description: 'Binary GL Transmission Format', size: '2.4 MB' },
-    { name: 'FBX', description: 'Filmbox 3D Format', size: '3.1 MB' },
-    { name: 'OBJ', description: 'Wavefront 3D Object Format', size: '1.8 MB' },
-  ];
 
   useEffect(() => {
     if (project.status === 'processing') {
@@ -52,11 +41,6 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
       return () => clearInterval(interval);
     }
   }, [project.status]);
-
-  const handleExport = (format: typeof exportFormats[0]) => {
-    console.log(`Downloading ${format.name} format`);
-    setShowExportDropdown(false);
-  };
 
   const handleImageUpload = async (file: File) => {
     setUploading(true);
@@ -188,11 +172,11 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
                 {/* Render the model */}
                 <Model url={modelUrl} />
                 {/* Controls for interaction */}
-                {/* <OrbitControls
-                  enableZoom={true}
-                  enablePan={true}
-                  enableRotate={true}
-                /> */}
+                <OrbitControls
+                  // enableZoom={true}
+                  // enablePan={true}
+                  // enableRotate={true}
+                />
               </Canvas>
             ) : (
               <div className="w-full h-full flex items-center justify-center">
