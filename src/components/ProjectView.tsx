@@ -185,10 +185,8 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
                 <ambientLight intensity={0.8} /> {/* General light to brighten the scene */}
                 <directionalLight position={[5, 5, 5]} intensity={1} /> {/* A directional light to create shadows */}
                 <pointLight position={[-5, -5, -5]} intensity={0.5} /> {/* Additional light for softer illumination */}
-                
-                {/* Render the model with 3x scale */}
-                <Model url={modelUrl} /> {/* Scale the model to 3x */}
-                
+                {/* Render the model */}
+                <Model url={modelUrl} />
                 {/* Controls for interaction */}
                 <OrbitControls
                   enableZoom={true}
