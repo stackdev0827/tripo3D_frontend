@@ -179,7 +179,7 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
             {modelUrl ? (
               <Canvas
                 camera={{ position: [2, 2, 5], fov: 50 }} // Adjusted camera position for a better view
-                style={{ width: '200%', height: '200%' }}
+                style={{ width: '100%', height: '100%' }}
               >
                 {/* Add balanced lighting */}
                 <ambientLight intensity={0.8} /> {/* General light to brighten the scene */}
