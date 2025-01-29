@@ -188,10 +188,10 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
           </div>
 
           {/* Controls */}
-          {modelUrl}
-          {/* {modelUrl && (
+          {/* {modelUrl} */}
+          {modelUrl && (
             <div className="flex justify-center space-x-4">
-              <button 
+              {/* <button 
                 className="p-2 hover:bg-gray-100 rounded-full" 
                 title="Rotate"
               >
@@ -208,9 +208,9 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
                 title="View Mode"
               >
                 <Eye className="w-5 h-5 text-gray-600" />
-              </button>
+              </button> */}
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </div>
