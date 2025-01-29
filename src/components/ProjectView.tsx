@@ -188,6 +188,7 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
           </div>
 
           {/* Controls */}
+          {modelUrl}
           {/* {modelUrl && (
             <div className="flex justify-center space-x-4">
               <button 
