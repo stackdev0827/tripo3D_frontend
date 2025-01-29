@@ -202,7 +202,6 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
               </div>
             )}
           </div>
-          {modelUrl}
 
           {/* Controls */}
           {/* {modelUrl && (
