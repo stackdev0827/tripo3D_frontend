@@ -64,7 +64,7 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
       const formData = new FormData();
       formData.append('file', file);
   
-      const response = await axios.post('https://7ce7-89-187-161-220.ngrok-free.app/api/files', formData, {
+      const response = await axios.post('https://b87d-89-187-161-220.ngrok-free.app/api/files', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -204,7 +204,28 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
           </div>
 
           {/* Controls */}
-          {modelUrl}
+          {modelUrl && (
+            <div className="flex justify-center space-x-4">
+              <button 
+                className="p-2 hover:bg-gray-100 rounded-full" 
+                title="Rotate"
+              >
+                <RotateCw className="w-5 h-5 text-gray-600" />
+              </button>
+              <button 
+                className="p-2 hover:bg-gray-100 rounded-full" 
+                title="Zoom"
+              >
+                <ZoomIn className="w-5 h-5 text-gray-600" />
+              </button>
+              <button 
+                className="p-2 hover:bg-gray-100 rounded-full" 
+                title="View Mode"
+              >
+                <Eye className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
