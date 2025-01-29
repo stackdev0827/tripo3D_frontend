@@ -187,7 +187,7 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
                 <pointLight position={[-5, -5, -5]} intensity={0.5} /> {/* Additional light for softer illumination */}
                 
                 {/* Render the model with 3x scale */}
-                <Model url={modelUrl} scale={3} /> {/* Scale the model to 3x */}
+                <Model url={modelUrl} /> {/* Scale the model to 3x */}
                 
                 {/* Controls for interaction */}
                 <OrbitControls
