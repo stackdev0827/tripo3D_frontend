@@ -64,7 +64,7 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
       const formData = new FormData();
       formData.append('file', file);
   
-      const response = await axios.post('https://853a-51-75-188-0.ngrok-free.app/api/files', formData, {
+      const response = await axios.post('https://7ce7-89-187-161-220.ngrok-free.app/api/files', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
