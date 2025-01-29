@@ -177,29 +177,18 @@ export function ProjectView({ project, onBack }: ProjectViewProps) {
           
           <div className="h-[400px] bg-gray-100 rounded-lg overflow-hidden">
             {modelUrl ? (
-              // <Canvas
-              //   camera={{ position: [0, 0, 5], fov: 50 }}
-              //   style={{ width: '100%', height: '100%' }}
-              // >
-              //   <ambientLight intensity={0.5} />
-              //   <pointLight position={[10, 10, 10]} intensity={1} />
-              //   <Model url={modelUrl} />
-              //   <OrbitControls 
-              //     enableZoom={true}
-              //     enablePan={true}
-              //     enableRotate={true}
-              //   />
-              // </Canvas>
               <Canvas
                 camera={{ position: [2, 2, 5], fov: 50 }} // Adjusted camera position for a better view
-                style={{ width: '100%', height: '100%' }}
+                style={{ width: '200%', height: '200%' }}
               >
                 {/* Add balanced lighting */}
                 <ambientLight intensity={0.8} /> {/* General light to brighten the scene */}
                 <directionalLight position={[5, 5, 5]} intensity={1} /> {/* A directional light to create shadows */}
                 <pointLight position={[-5, -5, -5]} intensity={0.5} /> {/* Additional light for softer illumination */}
-                {/* Render the model */}
-                <Model url={modelUrl} />
+                
+                {/* Render the model with 3x scale */}
+                <Model url={modelUrl} scale={3} /> {/* Scale the model to 3x */}
+                
                 {/* Controls for interaction */}
                 <OrbitControls
                   enableZoom={true}
